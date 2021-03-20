@@ -2,9 +2,10 @@ from mongoengine import connect, errors
 from .model import User, TextPost
 
 
-def connect_monkey():
+def connect_monkey(mock=False):
     # host is the same as in docker-compose.yaml
-    connect('monkey', host='mongo')
+    host = 'mongomock://localhost' if mock else 'mongo'
+    connect('monkey', host=host)
 
 
 def insert_data_for_query():
